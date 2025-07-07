@@ -24,7 +24,12 @@ export class HomeComponent implements OnInit {
 
   onSubmit(forum: forumPost) {
     console.log('Saved!!!');
-
+    forum.userId = 1;
+    forum.id = this.forums.length + 1;
+    this.homeService.addForum(forum).subscribe(newForum => {
+      this.forums.unshift(newForum);
+      console.log('new add: '+newForum);
+    });
   }
 
   ngOnInit() {
